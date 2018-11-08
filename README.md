@@ -1,2 +1,2 @@
-# estudos-vuejs
-Projeto de estudos VueJS
+# estudos-web
+Projeto de estudos web
