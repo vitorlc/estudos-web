@@ -19,6 +19,13 @@ module.exports = {
       idade: {
         type: Sequelize.INTEGER,
       },
+      endereco: {
+        type: Sequelize.STRING,
+      },
+      sexo: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+      },
     });
   },
 
