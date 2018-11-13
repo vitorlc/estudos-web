@@ -7,7 +7,10 @@ exports.create = (req, res) => {
 	Pessoa.create({  
 	  name: req.body.name,
 	  email: req.body.email,
-	  idade: req.body.idade
+		idade: req.body.idade,
+		endereco: req.body.endereco,
+	  sexo: req.body.sexo
+		
 	}).then(pessoa => {		
 		// Send created pessoa to client
 		res.send(pessoa);
