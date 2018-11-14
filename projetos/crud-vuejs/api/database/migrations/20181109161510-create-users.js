@@ -24,6 +24,10 @@ module.exports = {
       },
       sexo: {
         allowNull: false,
+        type: Sequelize.CHAR,
+      },
+      ativo: {
+        allowNull: false,
         type: Sequelize.BOOLEAN,
       },
     });
