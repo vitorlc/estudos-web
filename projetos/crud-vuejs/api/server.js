@@ -10,10 +10,21 @@ const db = require('./app/models');
 
 //Rotas
 const PessoaRoute = require('./app/route/pessoa');
-const pessoaRoute = new PessoaRoute(app)
 //const index = require('./app/routes/index');
 
-//app.use('', pessoaRoute);
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, x-access-token')
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+  //res.header('Access-Control-Allow-Credentials', true)
+  if ('OPTIONS' == req.method) {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
+
+app.use('/', PessoaRoute);
 
 //force: true will drop the table if it already exists
 db.sequelize.sync({
