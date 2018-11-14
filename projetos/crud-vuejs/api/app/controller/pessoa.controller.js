@@ -9,7 +9,8 @@ exports.create = (req, res) => {
 	  email: req.body.email,
 		idade: req.body.idade,
 		endereco: req.body.endereco,
-	  sexo: req.body.sexo
+		sexo: req.body.sexo,
+		ativo: req.body.ativo
 		
 	}).then(pessoa => {		
 		// Send created pessoa to client
@@ -35,7 +36,7 @@ exports.findById = (req, res) => {
 // Atualiza Pessoa
 exports.update = (req, res) => {
 	const id = req.params.pessoaId;
-	Pessoa.update( { name: req.body.name, email: req.body.email, idade: req.body.idade }, 
+	Pessoa.update( { name: req.body.name, email: req.body.email, idade: req.body.idade, endereco: req.body.endereco, sexo: req.body.sexo, ativo: req.body.ativo}, 
 					 { where: {id: req.params.pessoaId} }
 				   ).then(() => {
 					 res.status(200).send("Atualizado a pessoa com o id = " + id);
