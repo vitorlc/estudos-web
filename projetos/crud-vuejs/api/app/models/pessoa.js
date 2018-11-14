@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       idade: DataTypes.INTEGER,
       endereco: DataTypes.STRING,
-      sexo: DataTypes.BOOLEAN
+      sexo: DataTypes.CHAR,
+      ativo: DataTypes.BOOLEAN
 
     },{
         timestamps: false,
