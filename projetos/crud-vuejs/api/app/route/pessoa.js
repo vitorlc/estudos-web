@@ -9,12 +9,12 @@ var router = express.Router();
     router.get('/', pessoa.findAll);
  
     // Buscar uma única Pessoa pelo Id
-    router.get('/:pessoaId', pessoa.findById);
+    router.get('/:id', pessoa.findById);
  
     // Update Pessoa pelo Id
-    router.put('/:pessoaId', pessoa.update);
+    router.put('/:id', pessoa.update);
  
     // Delete Pessoa pelo Id
-    router.delete('/:pessoaId', pessoa.delete);
+    router.delete('/:id', pessoa.delete);
 
     module.exports = router;

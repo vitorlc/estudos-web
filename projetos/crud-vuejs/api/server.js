@@ -24,7 +24,7 @@ app.use(function(req, res, next) {
   }
 });
 
-app.use('/', PessoaRoute);
+app.use('/pessoa', PessoaRoute);
 
 //force: true will drop the table if it already exists
 db.sequelize.sync({
