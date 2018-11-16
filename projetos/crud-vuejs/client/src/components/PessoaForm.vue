@@ -44,39 +44,10 @@
             </div>
             <button type="button" @click="salvar()" class="btn btn-primary">Salvar</button>
         </form>
-        <br>
-        <h1 style="text-align: center">Lista de Pessoas Cadastradas</h1>
-        <table class="table table-borderless">
-        <thead>
-            <tr>
-            <th scope="col">ID</th>
-            <th scope="col">nome</th>
-            <th scope="col">email</th>
-            <th scope="col">idade</th>
-            <th scope="col">endereço</th>
-            <th scope="col">sexo</th>
-            <th scope="col">ativo</th>
-            <th scope="col">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="pessoa in pessoas" :key="pessoa.id">
-            <th scope="row">{{pessoa.id}}</th>
-            <td>{{pessoa.name}}</td>
-            <td>{{pessoa.email}}</td>
-            <td>{{pessoa.idade}}</td>
-            <td>{{pessoa.endereco}}</td>
-            <td>{{pessoa.sexo}}</td>
-            <td v-if="pessoa.ativo==true">Ativo</td>
-            <td v-else>Não</td>
-            <td><span @click="editar(pessoa.id)"><i class="far fa-edit"></i></span> | <span @click="remover(pessoa.id)"><i class="fas fa-trash-alt"></i></span></td>
-            </tr>
-        </tbody>
-        </table>
     </div>
 </template>
 
-<script src="./controllerPessoa.js"></script>
+<script src="./controllerForm.js"></script>
 
 <style scoped>
 label {
