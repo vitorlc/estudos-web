@@ -1,54 +1,53 @@
 const db = require('../models');
 const Pessoa = db.pessoa;
 
-// Post a Pessoa
-exports.create = (req, res) => {	
-	// Save to MySQL database
-	Pessoa.create({  
-	  name: req.body.name,
-	  email: req.body.email,
-		idade: req.body.idade,
-		endereco: req.body.endereco,
-		sexo: req.body.sexo,
-		ativo: req.body.ativo
-		
-	}).then(pessoa => {		
-		// Send created pessoa to client
-		res.send(pessoa);
-	});
+exports.create = async (req, res) => {
+	try {
+		let pessoa = await Pessoa.create(req.body);
+		return res.status(200).send(pessoa);
+	} catch(err) {
+		console.log(err)
+		return res.status(500).send({error: true, msg:"Não foi possível criar pessoa"});
+	}
 };
  
-// FETCH all Pessoas
-exports.findAll = (req, res) => {
-	Pessoa.findAll().then(pessoas => {
-	  // Envia todas as pessoas para o cliente
-	  res.send(pessoas);
-	});
+exports.findAll = async (req, res) => {
+	try {
+		let pessoas = await Pessoa.findAll();
+		return res.status(200).send(pessoas);
+	} catch(err) {
+		console.log(err);
+		return res.status(500).send({error: true, msg:"Não foi possível listar pessoas"});
+	}
 };
 
-// Busca pessoa pelo Id
-exports.findById = (req, res) => {	
-	Pessoa.findById(req.params.pessoaId).then(pessoa => {
-		res.send(pessoa);
-	})
+exports.findById = async (req, res) => {
+	try {
+		let pessoa = await Pessoa.findById(req.params.id);
+		console.log("TESTE");
+		return res.status(200).send(pessoa);
+	} catch(err) {
+		console.log(err);
+		return res.status(500).send({error: true, msg: "Não foi possível encontrar pessoa"});
+	}
 };
  
-// Atualiza Pessoa
-exports.update = (req, res) => {
-	const id = req.params.pessoaId;
-	Pessoa.update( { name: req.body.name, email: req.body.email, idade: req.body.idade, endereco: req.body.endereco, sexo: req.body.sexo, ativo: req.body.ativo}, 
-					 { where: {id: req.params.pessoaId} }
-				   ).then(() => {
-					 res.status(200).send("Atualizado a pessoa com o id = " + id);
-				   });
+exports.update = async (req, res) => {
+	try {
+		await Pessoa.update(req.body, { where: {id: req.params.id} });
+		return res.status(200).send({error:false, msg: "Pessoa atualizada com sucesso"});
+	} catch(err) {
+		console.log(err)
+		return res.status(500).send({error: true, msg: "Não foi possível atualizar pessoa"});
+	}
 };
  
-// Delete pessoa pelo Id
-exports.delete = (req, res) => {
-	const id = req.params.pessoaId;
-	Pessoa.destroy({
-	  where: { id: id }
-	}).then(() => {
-	  res.status(200).send('Deletado pessoa com id = ' + id);
-	});
+exports.delete = async (req, res) => {
+	try {
+		await Pessoa.destroy({where: { id: req.params.id }});
+		return res.status(200).send({error: false, msg: "Pessoa removida com sucesso"});
+	} catch(err) {
+		console.log(err)
+		return res.status(500).send({error: true, msg: "Não foi possível remover pessoa"});
+	}
 };

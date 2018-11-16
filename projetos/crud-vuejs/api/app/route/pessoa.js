@@ -1,19 +1,20 @@
-module.exports = function(app) {
- 
-    const pessoas = require('../controller/pessoa.controller');
+var express = require('express');
+var router = express.Router(); 
+    const pessoa = require('../controller/pessoa.controller');
  
     // Criar nova Pessoa
-    app.post('/pessoa', pessoas.create);
+    router.post('/', pessoa.create);
  
     // Buscar todas Pessoas
-    app.get('/pessoa', pessoas.findAll);
+    router.get('/', pessoa.findAll);
  
     // Buscar uma única Pessoa pelo Id
-    app.get('/pessoa/:pessoaId', pessoas.findById);
+    router.get('/:pessoaId', pessoa.findById);
  
     // Update Pessoa pelo Id
-    app.put('/pessoa/:pessoaId', pessoas.update);
+    router.put('/:pessoaId', pessoa.update);
  
     // Delete Pessoa pelo Id
-    app.delete('/pessoa/:pessoaId', pessoas.delete);
-}
+    router.delete('/:pessoaId', pessoa.delete);
+
+    module.exports = router;
