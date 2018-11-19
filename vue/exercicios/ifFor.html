@@ -7,9 +7,27 @@
     <script src="/js/vue.min.js"></script>
 </head>
 <body class="exercicio">
+    <div id="app">
+        <p v-for="(aluno, i) in alunos">
+            {{i+1}}) {{aluno.nome}} - {{ aluno.nota}} - 
+            <span v-if="aluno.nota>=6">Aprovado</span>
+            <span v-else>Reprovado</span>
 
+        </p>
+    </div>
     <script>
-        // ...
+        new Vue({
+            el:"#app",
+            data:{
+                alunos:[
+                    {nome: "Ana", nota: 7.8},
+                    {nome: "Vitor", nota: 9.9},
+                    {nome: "Thais", nota: 5.8},
+                    {nome: "Rui Barbosa", nota: 6.8}
+                ]
+            }
+
+        })
     </script>
 </body>
 </html>
