@@ -4,7 +4,6 @@ export default {
   name: 'pessoa',
   async created() {
     try {
-        vm = this
         let response = await this.$http.get("/pessoa")
         this.pessoas = response.data
       } catch(err) {
